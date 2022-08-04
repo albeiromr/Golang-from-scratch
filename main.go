@@ -1,24 +1,39 @@
 package main
 
-import "fmt"
-
-//así se declaran las constantes en golang
-//después de declaradas son imutables
-const iva int8 = 19
-
-//también se pueden declarar conjuntos de constantes como se realiza a continuación
-const (
-	diasRenta  int16   = 365
-	topeDinero float32 = 54
+import (
+	"fmt"
 )
+
 
 func main() {
 
-	//las constantes también se pueden declarar dentro de funciones
-	const salarioMensualTope float32 = 4.200
+	//la función fmt.Sprintf es el equivalente a los templates strings en javascript
+	//retorna el string ya formateado y se le puede asignar a una variable, no imprime
+	// nada en consola
 
-	fmt.Println("El impuestao del iva en colombia es del ", iva, "%", "deben declarar renta cada",
-		diasRenta, "y el tope de dinero es ", topeDinero, "millones")
+	iva := 19
+	grados := 32
 
-	fmt.Println("Quienes ganen mas de", salarioMensualTope, " millones deben pagar renta")
+	fraseImpuesto := fmt.Sprintf("El iva en colombia es %v%%", iva)
+	fmt.Println(fraseImpuesto)
+
+	fraseGrados := fmt.Sprintf("la temperatura en mariquita es %v° centigrados", grados)
+	fmt.Println(fraseGrados)
+
+
+	//-----------------------------------------------------------------------------------------------------------------------------------------
+	
+	//la función fmt.Printf imprime los valores según el formato o la transformación que 
+	//le queramos dar, los valores se asignan de izquierda a derecha el primer format verb
+	//corresponde a la primera variable declarada a la derecha y así susesivamente
+
+	//cada tipo de dato tiene format verbs distintos que se pueden consultar aquí https://pkg.go.dev/fmt
+	//también se pueden juntar dos verbos o mas como en el caso de la variable porcentaje
+
+	porcentajeDecimal := 5632.5632
+	porcentaje := 56
+	texto := "Hola a todos"
+	booleano := false
+
+	fmt.Printf("el decimal es %2.2f%% el texto es %s el booleano es %t el porcentaje es %d%% ", porcentajeDecimal, texto, booleano, porcentaje)
 }
