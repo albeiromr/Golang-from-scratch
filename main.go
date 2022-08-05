@@ -2,32 +2,61 @@ package main
 
 import (
 	"fmt"
+	"runtime"
+)
+
+const (
+	existError      bool   = true
+	counter         int8   = 4
+	operativeSystem string = runtime.GOOS
+	age             int8   = 50
 )
 
 func main() {
 
-	//Escape Characters or scape sequences
+	//este es un if else normal
+	if existError == false {
+		fmt.Println("no hay error")
+	} else {
+		fmt.Println("si hay error")
+	}
+	//este es un switch con una variable para hacer comparación
+	switch counter {
+	case 0:
+		fmt.Println("the counter is cero")
+	case 1:
+		fmt.Println("the counter is uno")
+	case 2:
+		fmt.Println("the counter is dos")
+		//los cases pueden tener uno o mas valores para comparar como a continuación
+	case 3, 4, 5:
+		fmt.Println("the counter is more than 2")
+	default:
+		fmt.Println("no es ninguno de los valores esperados")
 
-    //se usan para insertar caracteres que son ilegales en un string, son como las entidades en html
-	//estan presentes en muchos lenguajes de programación, a continuación los que encontré relevantes
-
-
-
-	// (\") Double quote -----------
-	fmt.Println("scape sequence para crear \"comillas dobles\" dentro de un string")
-	//output: esta es una "línea" con un scape character
-
-	// (\\) back-slash -----------
-	fmt.Println("scape sequence para crear un back-slash \\ dentro de un string")
-	//output: cape sequence para crear un back-slash \ dentro de un string
-
-	// (\b) retroceder un espacio -----------
-	fmt.Println("el porcentaje es del", 5, "\b%")
-	//output: el porcentaje es del 5%
-
-	// (\n) salto de línea -----------
-	fmt.Println("esta es la primera línea, \n esta es la segunda línea")
-	//esta es la primera línea,
-	//esta es la segunda línea
+	}
+	//este es un switch que no tiene una variable para hacer comparación
+	//la comparación se puede hacer en cada case individual lo cual puede ayudar a simplificar
+	//anidaciones feas de if else
+	switch {
+	case operativeSystem == "Linux":
+		fmt.Println("tu sistema operativo es linux")
+	case operativeSystem == "darwin":
+		fmt.Println("tu sistema operativo es darwin")
+	default:
+		fmt.Println("tu sistema operativo es otro")
+	}
+	//la palabra fallthrough permite que el código siga haciendo validaciones
+	//para ver en que otro case puede haber una coincidencia. por ejemplo
+	//en el siguiente switch se imprimen 2 valores
+	switch {
+	case age > 40:
+		fmt.Println("ya estas como viejo")
+		fallthrough
+	case age == 50:
+		fmt.Println("tienes 50 años")
+	default:
+		fmt.Println("no se que edad tienes")
+	}
 
 }
