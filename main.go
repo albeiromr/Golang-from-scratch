@@ -4,20 +4,23 @@ import (
 	"fmt"
 )
 
-//esto es un slice, aún no entiendo este tipo de dato
-var testSlice = []int{5, 6, 7, 8, 9}
-
 
 func main() {
 
-	//a continuación un bucle for comun en go
-	for i := 0; i < 10; i++ {
-		fmt.Println(i + 1)
-	}
+	//forma cencilla de obtener el input del usuario desde la misma terminal
+	var name string
+	var age int8
+	fmt.Printf("introduce your name:  ")
+	fmt.Scanln(&name)
+	fmt.Printf("introduce your age:  ")
+	fmt.Scanln(&age)
 
-	//este for es muy parecido al for each de javascript, no necesita saber el lenght de el array
-	//y nos devuelve también el index
-	for index, value := range testSlice {
-		fmt.Printf("el index es %v y el valor es %v \n", index, value)
+	switch {
+	case age < 18:
+		fmt.Printf("%v no eres mayor de 18 años, lo sentimos \n", name)
+	case age > 18:
+		fmt.Printf("%v eres mayor de 18 años, puedes acceder al servicio \n", name)
+	default:
+		fmt.Println("no hemos podido ver tu edad")
 	}
 }
