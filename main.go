@@ -1,25 +1,40 @@
 package main
 
 import (
+	"fmt"
 	"log"
+	"os"
+	"path"
 )
 
-const counter int8 = 1
 
 func main() {
+	
+	//her I´m extracting the actual folder path
+	actualPath, _ := os.Getwd()
 
-	switch counter {
-	case 1:
-		//log.Fatal hace que el programa pare después de imprimir un mensaje que nosotros le demos, no
-		//da información del error
-		log.Fatal("Fatal: esto es un error log.fatal!")
-	case 2:
-		//log.Panic() hace que el programa pare después de entregar información muy detallada
-		// del error como fecha y hora y otra info importante
-		log.Panic("Panic: esto es una error de log.Panic!")
-	case 3:
-		//panic() también da info del error y su ubicación, pero no entrega tanta info como log.Panic()
-		panic("Panic: esto es un error de solo panic!!")
+	//here we ar creating the path for the log file
+	logFile := path.Join(actualPath, "logs.log")
+
+	// The call to os.OpenFile() creates the log file for writing, 
+	// if it does not already exist, or opens it for writing
+	// by appending new data at the end of it (os.O_APPEND)
+	//mor info about flags in https://pkg.go.dev/os#O_CREATE
+	file, err := os.OpenFile(logFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+	//here we are verifying if there was errors when trying to open the file
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
+
+	//The defer keyword tells Go to execute the statement just before the current
+	// function returns. This means that f.Close() is going to be executed just 
+	//before main() returns.
+	defer file.Close()
+
+	logFromGo := log.New(file, "logFromGo: ", log.Ldate|log.Ltime|log.Llongfile)
+	logFromGo.Println("primer log!")
+    logFromGo.Println("otro log")
 
 }
