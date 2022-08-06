@@ -1,29 +1,25 @@
 package main
 
 import (
-	"fmt"
-	"time"
+	"log"
 )
 
-//paralelismo es hacer varias cosas al mismo tiempo
-//concurrencia es ocuparse de varias cosas al mismo tiempo
-
-func hello(number int) {
-	fmt.Println("Hello number", number)
-	//time.sleep es como un setTimeout en javascript
-	time.Sleep(5000 * time.Millisecond)
-}
+const counter int8 = 1
 
 func main() {
 
-	//para crear un goroutine usamos la palabra reservada go
-	for i := 0; i < 100; i++ {
-		go hello(i)
+	switch counter {
+	case 1:
+		//log.Fatal hace que el programa pare después de imprimir un mensaje que nosotros le demos, no
+		//da información del error
+		log.Fatal("Fatal: esto es un error log.fatal!")
+	case 2:
+		//log.Panic() hace que el programa pare después de entregar información muy detallada
+		// del error como fecha y hora y otra info importante
+		log.Panic("Panic: esto es una error de log.Panic!")
+	case 3:
+		//panic() también da info del error y su ubicación, pero no entrega tanta info como log.Panic()
+		panic("Panic: esto es un error de solo panic!!")
 	}
 
-	//las siguientes dos líneas son de rrelleno
-	//para que el proceso de la función main no termine antes
-	//que la ejecución del goroutine
-	var s string
-	fmt.Scanln(&s)
 }
