@@ -1,4 +1,0 @@
-logFromGo: 2022/08/06 15:01:35 /Users/albeiro/Documents/Estudio golang/primeros pasos/main.go:37: primer log!
-logFromGo: 2022/08/06 15:01:35 /Users/albeiro/Documents/Estudio golang/primeros pasos/main.go:38: otro log
-logFromGo: 2022/08/06 15:10:05 /Users/albeiro/Documents/Estudio golang/primeros pasos/main.go:37: primer log!
-logFromGo: 2022/08/06 15:10:05 /Users/albeiro/Documents/Estudio golang/primeros pasos/main.go:38: otro log
