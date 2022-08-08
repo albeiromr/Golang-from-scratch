@@ -1,17 +1,34 @@
+package main
+
+import (
+	"fmt"
+)
+
+//byte: representa un caracter (una letra) con un valor numérico de tipo uint8
+//las letras deben encerrarse en comillas simple cuando es una sola letra
 
 
-//int      si el sistema es de 32 bits es un int32 y si es de 64 bits es un int64
-//int8     de -128 a 127
-//int16    de -32.768 hasta 32.767
-//int32    de -2.147.483.648 hasta 2.147.483.647
-//int64    de -9.223.372.036.854.776.000 hata 9.223.372.036.854.770.999
+//rune: representa un character especial(unicode) con un valor de tipo int32
 
-//uint     si el sistema es de 32 bits es un int32 y si es de 64 bits es un int64
-//uint8    de 0 hasta 255
-//uint16   de 0 hasta 65.535
-//uint32   de 0 hasta 4.294.967.295
-//unit64   de 0 18.446.744.073.709.551.999
+func main() {
 
-//float32  ocupa 32 bits en memoria
-//float64  ocupa 64 bits en memoria y es el valor por defecto para números flotantes
+	//definiendo un byte, convierte la letra b en el número 98
+	var a byte = byte('b')
+	//imprimiento el valor del byte
+	fmt.Println(a)
 
+	//definiendo un arreglo de bytes
+	var b []byte = []byte("Hola soy un string")
+	//imprimiendo el valor del arreglo de bytes
+	fmt.Println(b)
+
+	//convirtiendo el arreglo de bytes a string
+	fmt.Println(string(b))
+
+	//creando una variable de tipo rune
+	var c rune = '~'
+	//imprimiendo una variable de tipo rune
+	fmt.Printf("%c tiene un valor unicode de %U\n", c, c)
+	//imprimiendo el valor de c como string
+	fmt.Println(string(c))
+}
