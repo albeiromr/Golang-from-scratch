@@ -1,34 +1,49 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"strconv"
 )
 
-var (
-	intList     []int8    = []int8{1, 2, 3}
-	stringList  []string = []string{"One", "Two", "Three"}
-	booleanList []bool   = []bool{true, false, false, true}
-)
-
-//función sin genérico solo acepta listas de strings
-func printList(list []string) {
-	for _, value := range list {
-		fmt.Println("values is: ", value)
+//devolviendo un error personalizado con  errors.new()
+func checkInt(a,b int) error {
+	if a == 0 && b == 0 {
+		return errors.New("Error personalizado: los valores no pueden estar en cero")
 	}
+	return nil
 }
 
-//función con genéricos acepta cualquier tipo de lista
-func printListGenerics[T any](list []T) {
-	for _, value := range list {
-		fmt.Println("values is: ", value)
+//devolviendo un error formateado con fmt.Errorf()
+func formatedError(a int) error {
+	if a == 0 {
+		return fmt.Errorf("Error formateado: no puedes inicializar con un paremetro en %v", a)
 	}
+	return nil
 }
+
 
 func main() {
-	//llamado sin genéricos
-	printList(stringList)
-	//llamados con genéricos con una lista de enteros
-	printListGenerics(intList)
-	//llamados con genéricos con una lista de booleanos
-	printListGenerics(booleanList)
+
+	personalizedError := checkInt(0,0)
+	if personalizedError != nil {
+		fmt.Println(personalizedError )
+	} else {
+		fmt.Println("no existen errores")
+	}
+
+	formatedError := formatedError(0)
+	if formatedError  != nil {
+		fmt.Println(formatedError)
+	} else {
+		fmt.Println("no existen errores")
+	}
+
+	//convirtiendo un string a un número, si no se puese convertir arroja un error
+	integer, parseError := strconv.Atoi("1234")
+	if parseError != nil {
+		fmt.Println(parseError)
+	} else {
+		fmt.Println( "The integer is ", integer)
+	}
 }
